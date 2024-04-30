@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+// This code is for Traversal in Arrays
 void display(int array[],int n)
 {
     for (int i = 0; i < n; i++)
@@ -7,6 +8,7 @@ void display(int array[],int n)
         printf("%d\n", array[i]);
     }
 }
+// This code is for Indexed Insertion in Arrays
 int indinsertion(int array[], int size, int element,int capacity, int index)
 {
     if (size>=capacity)
@@ -18,10 +20,9 @@ int indinsertion(int array[], int size, int element,int capacity, int index)
         array[i+1]=array[i];
     }
     array[index]=element;
-    return 1;
-    
+    return 1;   
 }
-
+// This is main function for calling
 int main(){
     printf("The array traversal is shown below %d\n");
     int array[100] = {7,8,12,27,88};
