@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+// This program only tells the balancing of paranthesis regardless of teh validity of expression
 struct stack{
     int size;
     int top;
@@ -54,8 +55,8 @@ char pop(struct stack *ptr){
 int paranthesis_Matching(char*exp){
     //creating stack
     struct stack* ptr;
-    ptr->size=200;
-    ptr->top=-1;
+    ptr->size=200; // here i am taking size = 200 bcz of the ease but when you are dealing with other projects you 
+    ptr->top=-1;   // may use strlen function to find the size of your expression
     ptr->arr=(char *)malloc(ptr->size*(sizeof(char)));
     for (int i = 0; exp[i]!='\0'; i++)
     {
