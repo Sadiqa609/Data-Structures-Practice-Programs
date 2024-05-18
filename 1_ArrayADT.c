@@ -24,8 +24,8 @@ void setVal(struct myArray *a)
     int n;
     for (int i = 0; i < a->used_size; i++)
     {
-        printf("Enter Elements %d", i);
-        scanf("%d", &n);
+        printf("Enter Elements %d\n", i);
+        scanf("%d\n", &n);
         (a->ptr)[i] = n;
     }
     
@@ -34,15 +34,15 @@ void show(struct myArray *a)
 {
     for (int i = 0; i < a->used_size; i++)
     {
-        printf("%d", (a->ptr)[i]);
+        printf("%d\n", (a->ptr)[i]);
     }
 }
 int main(){
     struct myArray marks;
     createArray(&marks,100,20);
-    printf("We are running setval now");
+    printf("We are running setval now\n");
     setVal(&marks);
-    printf("We are running show now");
+    printf("We are running show now\n");
     show(&marks);
     return 0 ;
 }
