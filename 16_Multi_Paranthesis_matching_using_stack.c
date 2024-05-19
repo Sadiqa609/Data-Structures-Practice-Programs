@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <stdlib.h>
+// This program only tells the balancing of paranthesis regardless of teh validity of expression
+struct stack{
+    int size;
+    int top;
+    char * arr; // pointer to dynamically allocate memory for the array
+};
+//to check either the stack is empty
+int isEmpty(struct stack*ptr)
+{
+    if (ptr->top==-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int isFull(struct stack*ptr)
+{
+    if (ptr->top==ptr->size-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+void push(struct stack* ptr, char val){
+    if(isFull(ptr)){
+        printf("Stack Overflow! Cannot push %d to the stack\n", val);
+    }
+    else{
+        ptr->top++;
+        ptr->arr[ptr->top] = val;
+    }
+}
+ 
+char pop(struct stack* ptr){
+    if(isEmpty(ptr)){
+        printf("Stack Underflow! Cannot pop from the stack\n");
+        return -1;
+    }
+    else{
+        char val = ptr->arr[ptr->top];
+        ptr->top--;
+        return val;
+    }
+}
+ int match(char c1, char c2)
+{
+     if (c1=='{' && c2=='}')
+    {
+      return 1;
+    }
+    if (c1=='(' && c2==')')
+    {
+      return 1;
+    }
+   
+    if (c1=='[' && c2==']')
+    {
+      return 1;
+    }
+    return 0;
+}
+int paranthesis_Matching(char*exp){
+    //creating stack
+    struct stack* ptr;
+    ptr->size=200; // here i am taking size = 200 bcz of the ease but when you are dealing with other projects you 
+    ptr->top=-1;   // may use strlen function to find the size of your expression
+    ptr->arr=(char *)malloc(ptr->size*(sizeof(char)));
+    char popped_character;
+    for (int i = 0; exp[i]!='\0'; i++)
+    {
+        if(exp[i]=='('||exp[i]=='{'||exp[i]=='[' ){
+            push(ptr,exp[i]);
+        }
+        else if(exp[i]==')'||exp[i]=='}'||exp[i]==']')
+        {
+            if(isEmpty(ptr))
+            {
+                return 0;
+            }
+            popped_character=pop(ptr);
+            if (!match(popped_character,exp[i]))
+            {
+                return 0;
+            }
+            
+        }
+    }
+    if (isEmpty(ptr))
+    {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+    
+}
+int main(){
+    char *exp="[12-9]((6){(9-3)})";
+    if (paranthesis_Matching(exp))
+    {
+       printf("The paranthesis are Matching %d");
+    }
+    else
+    {
+       printf("The paranthesis are not Matching %d");
+    }
+    
+    return 0;
+}
